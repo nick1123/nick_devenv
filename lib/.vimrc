@@ -17,7 +17,6 @@ nnoremap <CR> :noh<CR><CR>
 
 set cursorline
 
-autocmd FileType ruby,eruby         call UseRubyIndent()
 
 function UseRubyIndent ()
     setlocal tabstop=8
@@ -27,24 +26,4 @@ function UseRubyIndent ()
     setlocal makeprg=ruby\ %
 endfunction
 
-vnoremap \ll :'<,'>s/ /^M/g<cr>
-nnoremap \ll :s/ /^M/g<cr>
 
-if has("autocmd")
-  " Enable filetype detection
-  filetype plugin indent on
- 
-  " Restore cursor position
-  autocmd BufReadPost *
-    \ if line("'\"") > 1 && line("'\"") <= line("$") |
-    \   exe "normal! g`\"" |
-    \ endif
-endif
-if &t_Co > 2 || has("gui_running")
-  " Enable syntax highlighting
-  syntax on
-endif
-
-" Settings for VimClojure
-let g:clj_highlight_builtins=1      " Highlight Clojure's builtins
-let g:clj_paren_rainbow=1           " Rainbow parentheses'!
